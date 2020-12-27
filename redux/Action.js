@@ -1,5 +1,10 @@
 export const adding = (name, number) =>({
     type: 'fullAction',
-    payloadName: name,
-    payloadNumber: number,
+    payload:{
+    name: name,
+    number: number}
+})
+
+export const clear = () =>({
+    type: 'clearAction'
 })

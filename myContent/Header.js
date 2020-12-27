@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
-import {adding} from '../redux/Action'
+import {adding, clear} from '../redux/Action'
+import {styles} from '../myStyles/HeaderStyles'
 
 class Header extends Component{
     constructor(props){
@@ -13,13 +14,21 @@ class Header extends Component{
             <View>
                 <TextInput
                 placeholder="name"
-                onChange = {(text) => this.name1 = text}/>
+                onChangeText = {(text) => this.name1 = text}
+                style={styles.inputText}/>
                 <TextInput
                 placeholder="number"
-                onChange = {(text)=> this.number1 = text}/>
+                onChangeText = {(text)=> this.number1 = text}
+                style={styles.inputText}/>
                 <TouchableOpacity
-                onPress = {()=> this.props.add(this.name1, this.number1)}>
-                    <Text>najmi</Text>
+                onPress = {()=> this.props.add(this.name1, this.number1)}
+                style={styles.buttons}>
+                    <Text style={styles.buttonsText}>Press</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress = {()=> this.props.clear()}
+                style={styles.buttons}>
+                    <Text style={styles.buttonsText}>Clear</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -28,7 +37,8 @@ class Header extends Component{
 
 function mapDispatchToProps(dispatch){
     return {
-        add: (name, number)=>dispatch(adding(name, number)), dispatch
+        add: (name, number)=>dispatch(adding(name, number)),
+        clear: () => dispatch(clear())
     }
 
 }

@@ -10,12 +10,13 @@ class MainView extends Component{
     render(){
         return(
             <View>
-                <Text>
-                    {this.props.name}
-                </Text>
-                <Text>
-                    {this.props.number}
-                </Text>
+                <ScrollView>
+                    {this.props.list.map((i, index) => (
+                        <View  key={index}>
+                            <Text style={{fontSize:20}}>Name: {i.name}, Number: {i.number}</Text>
+                        </View>
+                    ))}
+                </ScrollView>
             </View>
         )
     }
@@ -23,8 +24,7 @@ class MainView extends Component{
 
 const mapStateToProps = (state) => {
     return{
-        name: state.name,
-        number: state.number,
+        list: state.list
     }
 }
 
